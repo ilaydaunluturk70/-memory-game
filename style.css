@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+}
+
+body {
+  background-color: #f4f1ea; /* Soft krem/bej arka plan */
+  color: #2d3748;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 650px; /* Daha fazla kart sığması için genişletildi */
+  width: 100%;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #2d3748;
+}
+
+.stats {
+  display: flex;
+  gap: 16px;
+  font-size: 16px;
+  color: #4a5568;
+}
+
+button {
+  background: #4a5568;
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #2d3748;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* Bilgisayarda 6 sütun */
+  gap: 10px;
+  perspective: 1000px;
+}
+
+.card {
+  aspect-ratio: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* KARTIN KAPALI HALİ - Adaçayı Yeşili / Soft Slate */
+.card-front {
+  background: #8b9a8b;
+  border: 2px solid #7a897a;
+}
+
+/* KARTIN AÇIK HALİ - Beyaz */
+.card-back {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  transform: rotateY(180deg);
+}
+
+/* EŞLEŞEN KARTLAR - Hafif soluk ve belirgin */
+.card.matched .card-back {
+  background: #f8fafc;
+  border-color: #8b9a8b;
+  opacity: 0.8;
+}
+
+/* MOBİL UYUM: Telefonlarda 4 sütuna düşür */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .card-face {
+    font-size: 26px; /* İkonları mobilde hafif küçült */
+  }
+}
